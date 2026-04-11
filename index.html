@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Developer & UI/UX Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">dev<span class="accent">.</span>folio</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-glow glow-1"></div>
+    <div class="hero-bg-glow glow-2"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Hello, I'm a Denmar Curtivo</p>
+      <h1 class="hero-heading">
+        <span class="typed-text" id="typedText"></span><span class="cursor" id="cursor">|</span>
+      </h1>
+      <p class="hero-sub">
+        I craft polished digital experiences — from pixel-perfect interfaces to robust web and mobile applications.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-label">01 — About</div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-heading">Building products that <span class="accent-text">matter</span></h2>
+          <p>
+            I'm a frontend developer and UI/UX designer passionate about bridging the gap between design and
+            engineering. I believe great software starts with deep empathy for the user and ends with clean,
+            maintainable code.
+          </p>
+          <p>
+            I specialise in web and mobile interfaces, interactive dashboards, and brand-driven digital experiences.
+            When I'm not coding, I'm prototyping in Figma or researching the latest in Material Design.
+          </p>
+          <div class="stats-row">
+            <div class="stat"><span class="stat-number">3+</span><span class="stat-label">Years Experience</span></div>
+            <div class="stat"><span class="stat-number">20+</span><span class="stat-label">Projects Shipped</span></div>
+            <div class="stat"><span class="stat-number">10+</span><span class="stat-label">Happy Clients</span></div>
+          </div>
+        </div>
+        <div class="about-card glass-card">
+          <div class="about-avatar">
+            <div class="avatar-ring"></div>
+            <div class="avatar-initials">DEV</div>
+          </div>
+          <div class="about-card-info">
+            <p class="about-role">Frontend Developer</p>
+            <p class="about-role accent-text">UI/UX Designer</p>
+            <p class="about-location">📍 Available Worldwide</p>
+          </div>
+          <div class="availability-badge">
+            <span class="dot"></span> Available for Work
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SKILLS
+  ═══════════════════════════════════════════ -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <div class="section-label">02 — Skills</div>
+      <h2 class="section-heading">Technologies I <span class="accent-text">work with</span></h2>
+      <div class="skills-grid">
+
+        <div class="skill-category glass-card">
+          <h3 class="skill-cat-title">Frontend</h3>
+          <div class="skill-tags">
+            <div class="skill-tag">
+              <span class="skill-icon">⟨/⟩</span> HTML5
+              <div class="skill-bar"><div class="skill-fill" style="--fill:95%"></div></div>
+            </div>
+            <div class="skill-tag">
+              <span class="skill-icon">✦</span> CSS3
+              <div class="skill-bar"><div class="skill-fill" style="--fill:90%"></div></div>
+            </div>
+            <div class="skill-tag">
+              <span class="skill-icon">JS</span> JavaScript
+              <div class="skill-bar"><div class="skill-fill" style="--fill:85%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category glass-card">
+          <h3 class="skill-cat-title">Backend & DB</h3>
+          <div class="skill-tags">
+            <div class="skill-tag">
+              <span class="skill-icon">𝛗</span> PHP
+              <div class="skill-bar"><div class="skill-fill" style="--fill:80%"></div></div>
+            </div>
+            <div class="skill-tag">
+              <span class="skill-icon">🗄</span> MySQL
+              <div class="skill-bar"><div class="skill-fill" style="--fill:75%"></div></div>
+            </div>
+            <div class="skill-tag">
+              <span class="skill-icon">🔥</span> Firebase
+              <div class="skill-bar"><div class="skill-fill" style="--fill:78%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category glass-card">
+          <h3 class="skill-cat-title">Mobile & Design</h3>
+          <div class="skill-tags">
+            <div class="skill-tag">
+              <span class="skill-icon">◈</span> Flutter / Dart
+              <div class="skill-bar"><div class="skill-fill" style="--fill:82%"></div></div>
+            </div>
+            <div class="skill-tag">
+              <span class="skill-icon">◻</span> UI/UX Design
+              <div class="skill-bar"><div class="skill-fill" style="--fill:90%"></div></div>
+            </div>
+            <div class="skill-tag">
+              <span class="skill-icon">⬡</span> Figma
+              <div class="skill-bar"><div class="skill-fill" style="--fill:88%"></div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PROJECTS
+  ═══════════════════════════════════════════ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-label">03 — Projects</div>
+      <h2 class="section-heading">Selected <span class="accent-text">Work</span></h2>
+
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="mobile">Mobile App</button>
+        <button class="filter-btn" data-filter="web">Web App</button>
+        <button class="filter-btn" data-filter="brand">Brand Identity</button>
+      </div>
+
+      <div class="projects-grid" id="projectsGrid">
+
+        <!-- Card 1: SocialHub -->
+        <article class="project-card glass-card" data-category="mobile">
+          <div class="project-card-top">
+            <div class="project-mockup mobile-mockup">
+              <div class="mockup-screen">
+                <div class="mock-notch"></div>
+                <div class="mock-feed">
+                  <div class="mock-story-row">
+                    <div class="mock-story"></div><div class="mock-story"></div>
+                    <div class="mock-story"></div><div class="mock-story"></div>
+                  </div>
+                  <div class="mock-post"></div>
+                  <div class="mock-post short"></div>
+                </div>
+              </div>
+            </div>
+            <div class="project-tag-badge">Mobile App</div>
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-title">SocialHub</h3>
+            <p class="project-desc">A social media app featuring real-time notifications, an Instagram-style feed UI, and fluid animated transitions built with Flutter &amp; Firebase.</p>
+            <div class="project-tech-row">
+              <span class="tech-chip">Flutter</span>
+              <span class="tech-chip">Dart</span>
+              <span class="tech-chip">Firebase</span>
+              <span class="tech-chip">Figma</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="proj-link">View Case Study →</a>
+              <a href="#" class="proj-link proj-link-ghost">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: School Management System -->
+        <article class="project-card glass-card featured" data-category="web">
+          <div class="project-card-top">
+            <div class="project-mockup web-mockup">
+              <div class="mockup-browser">
+                <div class="browser-bar">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                  <div class="browser-url"></div>
+                </div>
+                <div class="browser-body">
+                  <div class="dash-sidebar"></div>
+                  <div class="dash-main">
+                    <div class="dash-stat-row">
+                      <div class="dash-stat"></div>
+                      <div class="dash-stat"></div>
+                      <div class="dash-stat"></div>
+                    </div>
+                    <div class="dash-chart"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="project-tag-badge web-badge">Web App</div>
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-title">School Management System</h3>
+            <p class="project-desc">A full-featured admin dashboard with dynamic content areas for managing students, attendance, grades, and reports — powered by PHP and MySQL.</p>
+            <div class="project-tech-row">
+              <span class="tech-chip">PHP</span>
+              <span class="tech-chip">MySQL</span>
+              <span class="tech-chip">JavaScript</span>
+              <span class="tech-chip">CSS Grid</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="proj-link">View Case Study →</a>
+              <a href="#" class="proj-link proj-link-ghost">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Flip and Bite -->
+        <article class="project-card glass-card" data-category="brand">
+          <div class="project-card-top">
+            <div class="project-mockup brand-mockup">
+              <div class="brand-canvas">
+                <div class="brand-logo-mock">
+                  <div class="brand-icon-ring">
+                    <span class="brand-icon-text">F&B</span>
+                  </div>
+                  <div class="brand-name-mock">
+                    <div class="b-line wide"></div>
+                    <div class="b-line narrow"></div>
+                  </div>
+                </div>
+                <div class="brand-palette-row">
+                  <div class="brand-swatch s1"></div>
+                  <div class="brand-swatch s2"></div>
+                  <div class="brand-swatch s3"></div>
+                  <div class="brand-swatch s4"></div>
+                </div>
+              </div>
+            </div>
+            <div class="project-tag-badge brand-badge">Brand Identity</div>
+          </div>
+          <div class="project-card-body">
+            <h3 class="project-title">Flip and Bite</h3>
+            <p class="project-desc">A premium minimalist brand identity and UI concept for an artisanal food business — covering logo design, colour system, typography, and digital touchpoints.</p>
+            <div class="project-tech-row">
+              <span class="tech-chip">Figma</span>
+              <span class="tech-chip">Brand Design</span>
+              <span class="tech-chip">UI Concept</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="proj-link">View Case Study →</a>
+              <a href="#" class="proj-link proj-link-ghost">Behance</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT
+  ═══════════════════════════════════════════ -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <div class="section-label">04 — Contact</div>
+      <h2 class="section-heading">Let's build something <span class="accent-text">together</span></h2>
+      <div class="contact-grid">
+
+        <div class="contact-info">
+          <p class="contact-intro">
+            Have a project in mind? I'd love to hear about it. Send me a message and I'll get back to you as soon as possible.
+          </p>
+          <div class="contact-links">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              GitHub
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form glass-card" id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-icon">→</span>
+          </button>
+          <div class="form-feedback" id="formFeedback" aria-live="polite"></div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-logo">dev<span class="accent">.</span>folio</p>
+      <p class="footer-copy">Designed &amp; built with HTML, CSS &amp; vanilla JS · 2026</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
