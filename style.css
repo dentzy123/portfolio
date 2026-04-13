@@ -167,10 +167,30 @@ ul  { list-style: none; }
 }
 
 .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   font-size: 1.3rem;
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--text-primary);
+}
+
+.nav-logo-mark {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  transition: filter var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.nav-logo:hover .nav-logo-mark {
+  filter: drop-shadow(0 0 8px rgba(124, 108, 252, 0.6));
+  transform: rotate(-4deg) scale(1.08);
+}
+
+.nav-logo-wordmark {
+  line-height: 1;
 }
 
 .nav-links {

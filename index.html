@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio — Developer & UI/UX Designer</title>
+  <link rel="icon" type="image/svg+xml" href="logo.svg" />
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -16,7 +18,45 @@
   ═══════════════════════════════════════════ -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">dev<span class="accent">.</span>folio</a>
+      <a href="#hero" class="nav-logo">
+        <!-- Logo mark -->
+        <svg class="nav-logo-mark" viewBox="0 0 160 160" fill="none" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="nl-bg" x1="0" y1="0" x2="160" y2="160" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#1e1b3a"/>
+              <stop offset="100%" stop-color="#0f0f1e"/>
+            </linearGradient>
+            <linearGradient id="nl-accent" x1="0" y1="0" x2="160" y2="160" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#7c6cfc"/>
+              <stop offset="100%" stop-color="#fc6c9e"/>
+            </linearGradient>
+            <linearGradient id="nl-text" x1="0" y1="35" x2="0" y2="105" gradientUnits="userSpaceOnUse">
+              <stop offset="0%"   stop-color="#f0eeff"/>
+              <stop offset="100%" stop-color="#a594ff"/>
+            </linearGradient>
+            <filter id="nl-glow" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <rect x="2" y="2" width="156" height="156" rx="34" fill="url(#nl-bg)"/>
+          <radialGradient id="nl-bloom" cx="50%" cy="44%" r="50%" gradientUnits="objectBoundingBox">
+            <stop offset="0%"   stop-color="#7c6cfc" stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="#7c6cfc" stop-opacity="0"/>
+          </radialGradient>
+          <rect x="2" y="2" width="156" height="156" rx="34" fill="url(#nl-bloom)"/>
+          <rect x="2" y="2" width="156" height="156" rx="34" fill="none" stroke="url(#nl-accent)" stroke-width="1.5"/>
+          <rect x="28" y="2" width="104" height="1.5" rx="1" fill="url(#nl-accent)" opacity="0.55"/>
+          <text x="80" y="97"
+            font-family="Inter, system-ui, sans-serif"
+            font-size="70" font-weight="800"
+            fill="url(#nl-text)" text-anchor="middle"
+            letter-spacing="-2" filter="url(#nl-glow)">DC</text>
+          <circle cx="80" cy="122" r="4.5" fill="url(#nl-accent)" filter="url(#nl-glow)"/>
+        </svg>
+        <!-- Wordmark -->
+        <span class="nav-logo-wordmark">dev<span class="accent">.</span>folio</span>
+      </a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
