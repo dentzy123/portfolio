@@ -218,3 +218,73 @@ styleSheet.textContent = `
   }
 `;
 document.head.appendChild(styleSheet);
+
+/* Calculator modal + logic */
+(function () {
+  const openCalcBtns = document.querySelectorAll('.open-calculator');
+  const calcModal = document.getElementById('calcModal');
+  const calcOverlay = document.getElementById('calcOverlay');
+  const calcClose = document.getElementById('calcClose');
+  const calcDisplay = document.getElementById('calcDisplay');
+  if (!calcModal) return;
+
+  let calcEquation = '';
+
+  function openCalc() {
+    calcModal.classList.add('open');
+    calcModal.setAttribute('aria-hidden', 'false');
+    calcEquation = '';
+    updateCalcDisplay();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCalc() {
+    calcModal.classList.remove('open');
+    calcModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  openCalcBtns.forEach(b => b.addEventListener('click', openCalc));
+  calcClose.addEventListener('click', closeCalc);
+  calcOverlay.addEventListener('click', closeCalc);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && calcModal.classList.contains('open')) closeCalc();
+  });
+
+  function updateCalcDisplay() {
+    calcDisplay.textContent = calcEquation || '0';
+  }
+
+  document.querySelectorAll('.calc-btn').forEach(btn => {
+    btn.addEventListener('click', () => handleCalc(btn.dataset.value));
+  });
+
+  function handleCalc(val) {
+    if (val === 'C') {
+      calcEquation = '';
+    } else if (val === '±') {
+      if (calcEquation.startsWith('-')) calcEquation = calcEquation.slice(1);
+      else if (calcEquation) calcEquation = '-' + calcEquation;
+    } else if (val === '%') {
+      try {
+        let v = Function('"use strict";return (' + (calcEquation || '0') + ')')();
+        calcEquation = String(v / 100);
+      } catch (e) {
+        calcEquation = 'Error';
+      }
+    } else if (val === '=') {
+      try {
+        // Allow only safe characters
+        const safe = calcEquation.replace(/[^0-9+\-*/().%]/g, '');
+        let result = Function('"use strict";return (' + safe + ')')();
+        calcEquation = Number.isFinite(result) ? String(result) : 'Error';
+      } catch (e) {
+        calcEquation = 'Error';
+      }
+    } else {
+      if (calcEquation === 'Error' || calcEquation === '0') calcEquation = '';
+      calcEquation += val;
+    }
+    updateCalcDisplay();
+  }
+})();

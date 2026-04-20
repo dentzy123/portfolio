@@ -167,6 +167,10 @@
           <h3 class="skill-cat-title">Backend & DB</h3>
           <div class="skill-tags">
             <div class="skill-tag">
+              <span class="skill-icon">🐍</span> Python
+              <div class="skill-bar"><div class="skill-fill" style="--fill:88%"></div></div>
+            </div>
+            <div class="skill-tag">
               <span class="skill-icon">𝛗</span> PHP
               <div class="skill-bar"><div class="skill-fill" style="--fill:80%"></div></div>
             </div>
@@ -248,89 +252,36 @@
               <span class="tech-chip">Figma</span>
             </div>
             <div class="project-links">
-              <a href="#" class="proj-link">View Case Study →</a>
+              <a href="https://denskie-socialhub.web.app/" target="_blank" rel="noopener noreferrer" class="proj-link">View Live Project →</a>
               <a href="#" class="proj-link proj-link-ghost">GitHub</a>
             </div>
           </div>
         </article>
 
-        <!-- Card 2: School Management System -->
-        <article class="project-card glass-card featured" data-category="web">
+        <!-- Card 2: Calculator -->
+        <article class="project-card glass-card" data-category="web">
           <div class="project-card-top">
             <div class="project-mockup web-mockup">
               <div class="mockup-browser">
-                <div class="browser-bar">
-                  <span class="dot red"></span>
-                  <span class="dot yellow"></span>
-                  <span class="dot green"></span>
-                  <div class="browser-url"></div>
-                </div>
+                <div class="browser-bar"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div><div class="browser-url"></div></div>
                 <div class="browser-body">
-                  <div class="dash-sidebar"></div>
-                  <div class="dash-main">
-                    <div class="dash-stat-row">
-                      <div class="dash-stat"></div>
-                      <div class="dash-stat"></div>
-                      <div class="dash-stat"></div>
-                    </div>
-                    <div class="dash-chart"></div>
-                  </div>
+                  <img src="calculator-preview.svg" alt="Python calculator preview" class="project-image">
                 </div>
               </div>
             </div>
             <div class="project-tag-badge web-badge">Web App</div>
           </div>
           <div class="project-card-body">
-            <h3 class="project-title">School Management System</h3>
-            <p class="project-desc">A full-featured admin dashboard with dynamic content areas for managing students, attendance, grades, and reports — powered by PHP and MySQL.</p>
+            <h3 class="project-title">Modern Calculator</h3>
+            <p class="project-desc">A dark-themed calculator built with Python and Tkinter, featuring a minimalist desktop UI, basic arithmetic, percent, ± toggle, and error handling.</p>
             <div class="project-tech-row">
-              <span class="tech-chip">PHP</span>
-              <span class="tech-chip">MySQL</span>
-              <span class="tech-chip">JavaScript</span>
-              <span class="tech-chip">CSS Grid</span>
+              <span class="tech-chip">HTML</span>
+              <span class="tech-chip">CSS</span>
+              <span class="tech-chip">Python</span>
             </div>
             <div class="project-links">
-              <a href="#" class="proj-link">View Case Study →</a>
-              <a href="#" class="proj-link proj-link-ghost">GitHub</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Card 3: Flip and Bite -->
-        <article class="project-card glass-card" data-category="brand">
-          <div class="project-card-top">
-            <div class="project-mockup brand-mockup">
-              <div class="brand-canvas">
-                <div class="brand-logo-mock">
-                  <div class="brand-icon-ring">
-                    <span class="brand-icon-text">F&B</span>
-                  </div>
-                  <div class="brand-name-mock">
-                    <div class="b-line wide"></div>
-                    <div class="b-line narrow"></div>
-                  </div>
-                </div>
-                <div class="brand-palette-row">
-                  <div class="brand-swatch s1"></div>
-                  <div class="brand-swatch s2"></div>
-                  <div class="brand-swatch s3"></div>
-                  <div class="brand-swatch s4"></div>
-                </div>
-              </div>
-            </div>
-            <div class="project-tag-badge brand-badge">Brand Identity</div>
-          </div>
-          <div class="project-card-body">
-            <h3 class="project-title">Flip and Bite</h3>
-            <p class="project-desc">A premium minimalist brand identity and UI concept for an artisanal food business — covering logo design, colour system, typography, and digital touchpoints.</p>
-            <div class="project-tech-row">
-              <span class="tech-chip">Figma</span>
-              <span class="tech-chip">Brand Design</span>
-              <span class="tech-chip">UI Concept</span>
-            </div>
-            <div class="project-links">
-              <a href="#" class="proj-link">View Case Study →</a>
-              <a href="#" class="proj-link proj-link-ghost">Behance</a>
+              <button class="proj-link open-calculator" type="button">Open →</button>
+              <a href="cal.py" download class="proj-link proj-link-ghost">Download Python</a>
             </div>
           </div>
         </article>
@@ -397,6 +348,43 @@
       <p class="footer-copy">Designed &amp; built with HTML, CSS &amp; vanilla JS · 2026</p>
     </div>
   </footer>
+
+  <!-- Calculator Modal -->
+  <div id="calcModal" class="calc-modal" aria-hidden="true">
+    <div class="calc-overlay" id="calcOverlay"></div>
+    <div class="calc-container glass-card" role="dialog" aria-modal="true" aria-labelledby="calcTitle">
+      <button class="calc-close" id="calcClose" aria-label="Close calculator">✕</button>
+      <h3 id="calcTitle" class="section-heading" style="font-size:1.1rem;margin-bottom:0.6rem;">Calculator</h3>
+      <div class="calculator" id="webCalc" aria-live="polite">
+        <div class="calc-display" id="calcDisplay">0</div>
+        <div class="calc-keys">
+          <button class="calc-btn" data-value="C">C</button>
+          <button class="calc-btn" data-value="±">±</button>
+          <button class="calc-btn" data-value="%">%</button>
+          <button class="calc-btn op" data-value="/">÷</button>
+
+          <button class="calc-btn" data-value="7">7</button>
+          <button class="calc-btn" data-value="8">8</button>
+          <button class="calc-btn" data-value="9">9</button>
+          <button class="calc-btn op" data-value="*">×</button>
+
+          <button class="calc-btn" data-value="4">4</button>
+          <button class="calc-btn" data-value="5">5</button>
+          <button class="calc-btn" data-value="6">6</button>
+          <button class="calc-btn op" data-value="-">−</button>
+
+          <button class="calc-btn" data-value="1">1</button>
+          <button class="calc-btn" data-value="2">2</button>
+          <button class="calc-btn" data-value="3">3</button>
+          <button class="calc-btn op" data-value="+">+</button>
+
+          <button class="calc-btn wide" data-value="0">0</button>
+          <button class="calc-btn" data-value=".">.</button>
+          <button class="calc-btn equals" data-value="=">=</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

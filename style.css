@@ -314,8 +314,9 @@ ul  { list-style: none; }
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   color: var(--text-secondary);
   max-width: 580px;
-  margin-bottom: 2.5rem;
+  margin: 0 auto 2.5rem;
   line-height: 1.75;
+  text-align: center;
 }
 
 .hero-actions {
@@ -682,6 +683,12 @@ ul  { list-style: none; }
   margin-left: 6px;
 }
 .browser-body { display: flex; height: 90px; }
+.project-mockup .project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
 .dash-sidebar {
   width: 38px;
   background: rgba(124,108,252,0.12);
@@ -810,6 +817,11 @@ ul  { list-style: none; }
   font-weight: 600;
   color: var(--accent-bright);
   transition: color var(--dur) var(--ease), gap var(--dur) var(--ease);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
 }
 .proj-link:hover { color: var(--text-primary); }
 
@@ -1008,3 +1020,91 @@ ul  { list-style: none; }
   .contact-form { padding: 1.75rem 1.25rem; }
   .project-tag-badge { font-size: 0.62rem; padding: 0.25rem 0.6rem; }
 }
+
+/* Calculator modal and UI */
+.calc-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 120; padding: 20px; }
+.calc-modal.open { display: flex; }
+.calc-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+.calc-container { position: relative; width: 380px; max-width: calc(100% - 32px); padding: 1rem 1.2rem 1.6rem; border-radius: 16px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
+.calc-close { position: absolute; top: 8px; right: 10px; background: transparent; border: none; color: var(--text-secondary); font-size: 1.25rem; cursor: pointer; }
+.calculator { display: flex; flex-direction: column; gap: 12px; }
+.calc-display { background: transparent; color: var(--text-primary); font-size: 2.4rem; text-align: right; padding: 0.6rem 0.8rem; border-radius: 8px; min-height: 56px; overflow: hidden; }
+.calc-keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.calc-btn { background: var(--bg-elevated); color: var(--text-primary); border: none; padding: 12px; font-size: 1rem; border-radius: 10px; cursor: pointer; transition: transform .06s ease, background .12s ease; }
+.calc-btn:active { transform: translateY(2px); }
+.calc-btn.op { background: var(--accent); color: #fff; }
+.calc-btn.equals { grid-column: 4 / 5; background: var(--accent-bright); color: #fff; font-weight: 700; }
+.calc-btn.wide { grid-column: 1 / 3; }
+
+@media (max-width: 480px) {
+  .calc-container { width: 100%; padding: 0.8rem; border-radius: 12px; }
+  .calc-display { font-size: 2rem; }
+}
+
+/* ==============================
+   Calculator theme override
+   Match Python Tkinter colors (cal.py)
+   ============================== */
+.calc-container.glass-card {
+  background: #121212 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(255,255,255,0.04) !important;
+}
+.calc-container {
+  width: 380px;
+  max-width: calc(100% - 32px);
+  padding: 1rem 1.2rem 1.6rem;
+  border-radius: 16px;
+  background: #121212;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+.calculator { gap: 12px; }
+.calc-display {
+  background: transparent;
+  color: #FFFFFF;
+  font-size: 2.4rem;
+  text-align: right;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  min-height: 56px;
+  font-family: 'Helvetica', Arial, sans-serif;
+}
+.calc-keys { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.calc-btn {
+  background: #2C2C2C; /* button background */
+  color: #FFFFFF;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform .06s ease, background .12s ease;
+  font-weight: 600;
+}
+.calc-btn:active { transform: translateY(2px); }
+
+/* Operator / accent colors (orange like cal.py) */
+.calc-btn.op {
+  background: #FF9F0A; /* accent orange */
+  color: #FFFFFF;
+}
+.calc-btn.op:active { background: #FFB340; }
+
+/* Equals uses same accent */
+.calc-btn.equals {
+  background: #FF9F0A;
+  color: #FFFFFF;
+  font-weight: 800;
+}
+
+/* Clear / special keys styling */
+.calc-btn[data-value="C"],
+.calc-btn[data-value="±"],
+.calc-btn[data-value="%"] {
+  background: #A5A5A5;
+  color: #000000;
+}
+
+.calc-btn.wide { grid-column: 1 / 3; }
+
