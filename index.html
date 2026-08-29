@@ -10,6 +10,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
 </head>
 <body>
 
@@ -57,15 +65,38 @@
         <!-- Wordmark -->
         <span class="nav-logo-wordmark">dev<span class="accent">.</span>folio</span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-        <span></span><span></span><span></span>
-      </button>
+
       <ul class="nav-links" id="navLinks">
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" type="button" aria-label="Switch to light theme" title="Toggle Light / Dark Mode">
+          <!-- Sun icon (shown in dark mode to switch to light) -->
+          <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <!-- Moon icon (shown in light mode to switch to dark) -->
+          <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -227,18 +258,8 @@
         <!-- Card 1: SocialHub -->
         <article class="project-card glass-card" data-category="mobile">
           <div class="project-card-top">
-            <div class="project-mockup mobile-mockup">
-              <div class="mockup-screen">
-                <div class="mock-notch"></div>
-                <div class="mock-feed">
-                  <div class="mock-story-row">
-                    <div class="mock-story"></div><div class="mock-story"></div>
-                    <div class="mock-story"></div><div class="mock-story"></div>
-                  </div>
-                  <div class="mock-post"></div>
-                  <div class="mock-post short"></div>
-                </div>
-              </div>
+            <div class="project-preview-wrap">
+              <img src="socialhub-preview.svg" alt="SocialHub Flutter App UI Preview" class="project-preview-img" loading="lazy">
             </div>
             <div class="project-tag-badge">Mobile App</div>
           </div>
@@ -261,13 +282,8 @@
         <!-- Card 2: Calculator -->
         <article class="project-card glass-card" data-category="web">
           <div class="project-card-top">
-            <div class="project-mockup web-mockup">
-              <div class="mockup-browser">
-                <div class="browser-bar"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div><div class="browser-url"></div></div>
-                <div class="browser-body">
-                  <img src="calculator-preview.svg" alt="Python calculator preview" class="project-image">
-                </div>
-              </div>
+            <div class="project-preview-wrap">
+              <img src="calculator-preview.svg" alt="Modern Python &amp; Web Calculator UI Preview" class="project-preview-img" loading="lazy">
             </div>
             <div class="project-tag-badge web-badge">Web App</div>
           </div>
@@ -394,6 +410,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>

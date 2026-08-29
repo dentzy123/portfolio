@@ -2,6 +2,38 @@
    PORTFOLIO — vanilla JS
 ══════════════════════════════════════════════════════════ */
 
+/* ── Theme Switcher (Light & Dark) ── */
+const themeToggle = document.getElementById('themeToggle');
+
+function applyTheme(theme) {
+  if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-label', 'Switch to dark theme');
+      themeToggle.setAttribute('title', 'Switch to dark theme');
+    }
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-label', 'Switch to light theme');
+      themeToggle.setAttribute('title', 'Switch to light theme');
+    }
+  }
+  localStorage.setItem('theme', theme);
+}
+
+// Initialize theme from storage
+const currentStoredTheme = localStorage.getItem('theme') || 'dark';
+applyTheme(currentStoredTheme);
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const targetTheme = isLight ? 'dark' : 'light';
+    applyTheme(targetTheme);
+  });
+}
+
 /* ── Navbar: scroll class & active link ── */
 const navbar   = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-link');
