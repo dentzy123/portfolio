@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio — Developer & UI/UX Designer</title>
-  <link rel="icon" type="image/svg+xml" href="logo.svg" />
-  <link rel="alternate icon" type="image/x-icon" href="favicon.ico" />
+  <title>Denmar Curtivo — Frontend &amp; Backend Developer | UI/UX Designer</title>
+  <meta name="description" content="Denmar Curtivo's portfolio: frontend and backend web development with HTML, CSS, JavaScript, PHP, and Python, plus UI/UX design, IT support, productivity tools, and operations skills." />
+  <meta name="theme-color" content="#101014" />
+  <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48 64x64" href="favicon.ico?v=dc-2" />
+  <link rel="icon" type="image/svg+xml" sizes="any" href="logo.svg?v=dc-2" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script>
     (function() {
-      const savedTheme = localStorage.getItem('theme');
+      let savedTheme;
+      try { savedTheme = localStorage.getItem('theme'); } catch {}
       if (savedTheme === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
       }
@@ -20,50 +23,18 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ═══════════════════════════════════════════
        NAVIGATION
   ═══════════════════════════════════════════ -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo">
+      <a href="#hero" class="nav-logo" aria-label="Denmar Curtivo - Home">
         <!-- Logo mark -->
-        <svg class="nav-logo-mark" viewBox="0 0 160 160" fill="none" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="nl-bg" x1="0" y1="0" x2="160" y2="160" gradientUnits="userSpaceOnUse">
-              <stop offset="0%"   stop-color="#1e1b3a"/>
-              <stop offset="100%" stop-color="#0f0f1e"/>
-            </linearGradient>
-            <linearGradient id="nl-accent" x1="0" y1="0" x2="160" y2="160" gradientUnits="userSpaceOnUse">
-              <stop offset="0%"   stop-color="#7c6cfc"/>
-              <stop offset="100%" stop-color="#fc6c9e"/>
-            </linearGradient>
-            <linearGradient id="nl-text" x1="0" y1="35" x2="0" y2="105" gradientUnits="userSpaceOnUse">
-              <stop offset="0%"   stop-color="#f0eeff"/>
-              <stop offset="100%" stop-color="#a594ff"/>
-            </linearGradient>
-            <filter id="nl-glow" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
-              <feGaussianBlur stdDeviation="3" result="blur"/>
-              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          <rect x="2" y="2" width="156" height="156" rx="34" fill="url(#nl-bg)"/>
-          <radialGradient id="nl-bloom" cx="50%" cy="44%" r="50%" gradientUnits="objectBoundingBox">
-            <stop offset="0%"   stop-color="#7c6cfc" stop-opacity="0.16"/>
-            <stop offset="100%" stop-color="#7c6cfc" stop-opacity="0"/>
-          </radialGradient>
-          <rect x="2" y="2" width="156" height="156" rx="34" fill="url(#nl-bloom)"/>
-          <rect x="2" y="2" width="156" height="156" rx="34" fill="none" stroke="url(#nl-accent)" stroke-width="1.5"/>
-          <rect x="28" y="2" width="104" height="1.5" rx="1" fill="url(#nl-accent)" opacity="0.55"/>
-          <text x="80" y="97"
-            font-family="Inter, system-ui, sans-serif"
-            font-size="70" font-weight="800"
-            fill="url(#nl-text)" text-anchor="middle"
-            letter-spacing="-2" filter="url(#nl-glow)">DC</text>
-          <circle cx="80" cy="122" r="4.5" fill="url(#nl-accent)" filter="url(#nl-glow)"/>
-        </svg>
+        <img class="nav-logo-mark" src="logo.svg" alt="" width="35" height="35" decoding="async" />
         <!-- Wordmark -->
-        <span class="nav-logo-wordmark">dev<span class="accent">.</span>folio</span>
+        <span class="nav-logo-wordmark">denmar<span class="accent">.</span></span>
       </a>
 
       <ul class="nav-links" id="navLinks">
@@ -93,7 +64,8 @@
           </svg>
         </button>
 
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <a class="nav-contact" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation" aria-controls="navLinks" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -103,25 +75,49 @@
   <!-- ═══════════════════════════════════════════
        HERO
   ═══════════════════════════════════════════ -->
-  <section class="hero" id="hero">
-    <div class="hero-bg-glow glow-1"></div>
-    <div class="hero-bg-glow glow-2"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Hello, I'm a Denmar Curtivo</p>
-      <h1 class="hero-heading">
-        <span class="typed-text" id="typedText"></span><span class="cursor" id="cursor">|</span>
-      </h1>
-      <p class="hero-sub">
-        I craft polished digital experiences — from pixel-perfect interfaces to robust web and mobile applications.
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View My Work</a>
-        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+  <main id="main">
+  <section class="hero" id="hero" aria-labelledby="heroTitle">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <p class="hero-eyebrow"><span class="status-dot" aria-hidden="true"></span> Available for new projects</p>
+        <p class="hero-greeting">Hey there, I'm</p>
+        <h1 class="hero-heading" id="heroTitle">Denmar<br><span>Curtivo<span class="name-period">.</span></span></h1>
+        <p class="hero-role">Frontend &amp; Backend Developer <span aria-hidden="true">·</span> UI/UX Designer</p>
+        <p class="hero-sub">I’m an IT student building practical web and mobile experiences—from clean interfaces to backend systems, with hands-on skills in hardware troubleshooting.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary explore-work">Explore my work <span aria-hidden="true">↗</span></a>
+          <a href="assets/DENMAR_CURTIVO_RESUME.docx" download class="btn btn-outline">Download CV <span aria-hidden="true">↓</span></a>
+        </div>
       </div>
+      <figure class="hero-portrait">
+        <a class="portrait-frame" href="https://www.facebook.com/denmar.curtivo" target="_blank" rel="noopener noreferrer" aria-label="Visit Denmar Curtivo on Facebook (opens in a new tab)">
+          <img src="assets/denmar-curtivo.jpg" alt="Denmar Curtivo wearing a denim jacket and sunglasses" width="864" height="865" fetchpriority="high" decoding="async" />
+          <svg class="portrait-outline" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none" aria-hidden="true" focusable="false">
+            <path d="M .5 95 V 45 A 49.5 44.5 0 0 1 99.5 45 V 95 Q 99.5 99.5 95 99.5 H 5 Q .5 99.5 .5 95 Z" pathLength="100" />
+          </svg>
+          <div class="portrait-caption"><span>FRONTEND · BACKEND · DESIGN</span><span aria-hidden="true">↗</span></div>
+        </a>
+        <figcaption class="portrait-label">
+          <div class="project-showcase" role="region" aria-roledescription="carousel" aria-labelledby="showcaseLabel">
+            <p class="showcase-label" id="showcaseLabel">Project Showcase</p>
+            <div class="showcase-slides" id="showcaseSlides">
+              <a class="showcase-fallback" href="#projects">Browse my projects</a>
+            </div>
+            <div class="showcase-controls" hidden>
+              <span class="showcase-counter" id="showcaseCounter" aria-hidden="true"></span>
+              <div class="showcase-buttons">
+                <button class="showcase-button" type="button" id="previousProject" aria-label="Previous project" aria-controls="showcaseSlides"><span aria-hidden="true">←</span></button>
+                <button class="showcase-button" type="button" id="nextProject" aria-label="Next project" aria-controls="showcaseSlides"><span aria-hidden="true">→</span></button>
+              </div>
+            </div>
+            <p class="sr-only" id="showcaseStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+          </div>
+        </figcaption>
+      </figure>
     </div>
-    <div class="hero-scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
+    <div class="container hero-bottom">
+      <span>DESIGN. DEVELOP. REFINE.</span>
+      <a href="#about">Get to know me <span aria-hidden="true">↓</span></a>
     </div>
   </section>
 
@@ -135,29 +131,30 @@
         <div class="about-text">
           <h2 class="section-heading">Building products that <span class="accent-text">matter</span></h2>
           <p>
-            I'm a frontend developer and UI/UX designer passionate about bridging the gap between design and
-            engineering. I believe great software starts with deep empathy for the user and ends with clean,
-            maintainable code.
+            I'm an IT student, frontend and backend developer, and UI/UX designer who connects thoughtful interfaces with
+            practical application logic. I work with HTML, CSS, JavaScript, PHP, and Python to build web
+            experiences and basic applications with clean, maintainable code.
           </p>
           <p>
-            I specialise in web and mobile interfaces, interactive dashboards, and brand-driven digital experiences.
-            When I'm not coding, I'm prototyping in Figma or researching the latest in Material Design.
+            My toolkit includes Visual Studio Code, GitHub, XAMPP, phpMyAdmin, and Power BI, alongside Figma
+            for interface design. I also bring computer literacy, data entry, hardware and systems troubleshooting,
+            basic network configuration, and Microsoft Office skills in Word, Excel, and PowerPoint.
           </p>
-          <div class="stats-row">
-            <div class="stat"><span class="stat-number">3+</span><span class="stat-label">Years Experience</span></div>
-            <div class="stat"><span class="stat-number">20+</span><span class="stat-label">Projects Shipped</span></div>
-            <div class="stat"><span class="stat-number">10+</span><span class="stat-label">Happy Clients</span></div>
-          </div>
+          <p>
+            Beyond technology, my skills cover logistics and warehouse operations, inventory and order management,
+            sorting, picking, and quality control. Time management, multitasking, and team collaboration
+            support the way I approach both technical projects and day-to-day operations.
+          </p>
         </div>
         <div class="about-card glass-card">
-          <div class="about-avatar">
-            <div class="avatar-ring"></div>
-            <div class="avatar-initials">DEV</div>
-          </div>
+          <a class="about-avatar" href="https://www.facebook.com/denmar.curtivo" target="_blank" rel="noopener noreferrer" aria-label="Visit Denmar Curtivo on Facebook (opens in a new tab)">
+            <img class="about-portrait" src="assets/denmar-curtivo.jpg" alt="Portrait of Denmar Curtivo" width="864" height="865" loading="lazy" />
+          </a>
           <div class="about-card-info">
-            <p class="about-role">Frontend Developer</p>
+            <h3 class="about-name">Denmar Curtivo</h3>
+            <p class="about-role">Frontend &amp; Backend Developer</p>
             <p class="about-role accent-text">UI/UX Designer</p>
-            <p class="about-location">📍 Available Worldwide</p>
+            <p class="about-location">Open to working worldwide</p>
           </div>
           <div class="availability-badge">
             <span class="dot"></span> Available for Work
@@ -173,11 +170,11 @@
   <section class="section section-alt" id="skills">
     <div class="container">
       <div class="section-label">02 — Skills</div>
-      <h2 class="section-heading">Technologies I <span class="accent-text">work with</span></h2>
+      <h2 class="section-heading">Skills &amp; <span class="accent-text">Expertise</span></h2>
       <div class="skills-grid">
 
         <div class="skill-category glass-card">
-          <h3 class="skill-cat-title">Frontend</h3>
+          <h3 class="skill-cat-title">Frontend Web Development</h3>
           <div class="skill-tags">
             <div class="skill-tag">
               <span class="skill-icon">⟨/⟩</span> HTML5
@@ -195,7 +192,7 @@
         </div>
 
         <div class="skill-category glass-card">
-          <h3 class="skill-cat-title">Backend & DB</h3>
+          <h3 class="skill-cat-title">Backend Programming &amp; Databases</h3>
           <div class="skill-tags">
             <div class="skill-tag">
               <span class="skill-icon">🐍</span> Python
@@ -213,11 +210,12 @@
               <span class="skill-icon">🔥</span> Firebase
               <div class="skill-bar"><div class="skill-fill" style="--fill:78%"></div></div>
             </div>
+            <div class="skill-tag">Basic Application Development</div>
           </div>
         </div>
 
         <div class="skill-category glass-card">
-          <h3 class="skill-cat-title">Mobile & Design</h3>
+          <h3 class="skill-cat-title">Mobile &amp; Design</h3>
           <div class="skill-tags">
             <div class="skill-tag">
               <span class="skill-icon">◈</span> Flutter / Dart
@@ -234,6 +232,47 @@
           </div>
         </div>
 
+        <div class="skill-category glass-card">
+          <h3 class="skill-cat-title">IT Tools &amp; Platforms</h3>
+          <ul class="skill-tags skill-list">
+            <li class="skill-tag">Visual Studio Code</li>
+            <li class="skill-tag">GitHub</li>
+            <li class="skill-tag">XAMPP</li>
+            <li class="skill-tag">phpMyAdmin</li>
+            <li class="skill-tag">Power BI</li>
+          </ul>
+        </div>
+
+        <div class="skill-category glass-card">
+          <h3 class="skill-cat-title">Systems &amp; Technical Support</h3>
+          <ul class="skill-tags skill-list">
+            <li class="skill-tag">Computer Literacy &amp; Data Entry</li>
+            <li class="skill-tag">Hardware &amp; Systems Troubleshooting</li>
+            <li class="skill-tag">Basic Network Configuration</li>
+          </ul>
+        </div>
+
+        <div class="skill-category glass-card">
+          <h3 class="skill-cat-title">Productivity Software</h3>
+          <ul class="skill-tags skill-list">
+            <li class="skill-tag">Microsoft Office Suite</li>
+            <li class="skill-tag">Word</li>
+            <li class="skill-tag">Excel</li>
+            <li class="skill-tag">PowerPoint</li>
+          </ul>
+        </div>
+
+        <div class="skill-category skill-category-wide glass-card">
+          <h3 class="skill-cat-title">Operations &amp; Soft Skills</h3>
+          <ul class="skill-tags skill-list">
+            <li class="skill-tag">Logistics &amp; Warehouse Operations</li>
+            <li class="skill-tag">Inventory &amp; Order Management</li>
+            <li class="skill-tag">Sorting, Picking &amp; Quality Control</li>
+            <li class="skill-tag">Time Management &amp; Multitasking</li>
+            <li class="skill-tag">Team Collaboration</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
@@ -241,22 +280,49 @@
   <!-- ═══════════════════════════════════════════
        PROJECTS
   ═══════════════════════════════════════════ -->
-  <section class="section" id="projects">
+  <section class="section" id="projects" aria-labelledby="projectsTitle">
     <div class="container">
       <div class="section-label">03 — Projects</div>
-      <h2 class="section-heading">Selected <span class="accent-text">Work</span></h2>
+      <h2 class="section-heading" id="projectsTitle">Selected <span class="accent-text">Projects</span></h2>
 
       <div class="filter-bar">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="mobile">Mobile App</button>
         <button class="filter-btn" data-filter="web">Web App</button>
-        <button class="filter-btn" data-filter="brand">Brand Identity</button>
       </div>
 
+      <!-- Single project list: script.js builds the hero showcase from these cards.
+           Add a card here with .project-title, .project-desc, and its own links;
+           .project-preview-img is optional. No second project list to maintain. -->
       <div class="projects-grid" id="projectsGrid">
 
+        <!-- TapSync screenshot and logo captured from https://nfc-card-five.vercel.app/ on 2026-11-17.
+             React confirmed in the live DOM; JavaScript and CSS loaded by the public page.
+             Add project-role and a View Code link once the contribution and repository are confirmed. -->
+        <article class="project-card glass-card" id="tapsync" data-category="web" aria-labelledby="tapsyncTitle" tabindex="-1">
+          <div class="project-card-top">
+            <div class="project-preview-wrap">
+              <img class="project-preview-img" src="assets/tapsync-preview.png" alt="TapSync live website showing its digital business card and profile preview" width="1440" height="1000" loading="lazy" decoding="async" />
+            </div>
+            <div class="project-tag-badge web-badge">Web App</div>
+          </div>
+          <div class="project-card-body">
+            <p class="project-kicker">Latest project</p>
+            <h3 class="project-title" id="tapsyncTitle">TapSync<span class="accent-text" aria-hidden="true">.</span></h3>
+            <p class="project-desc">A digital business card and profile builder for creating shareable pages for NFC cards and QR codes.</p>
+            <div class="project-tech-row" aria-label="Technology stack">
+              <span class="tech-chip">React</span>
+              <span class="tech-chip">JavaScript</span>
+              <span class="tech-chip">CSS</span>
+            </div>
+            <div class="project-links">
+              <a href="https://nfc-card-five.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-link">Live Demo <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+            </div>
+          </div>
+        </article>
+
         <!-- Card 1: SocialHub -->
-        <article class="project-card glass-card" data-category="mobile">
+        <article class="project-card glass-card" id="socialhub" data-category="mobile" aria-labelledby="socialhubTitle" tabindex="-1">
           <div class="project-card-top">
             <div class="project-preview-wrap">
               <img src="socialhub-preview.svg" alt="SocialHub Flutter App UI Preview" class="project-preview-img" loading="lazy">
@@ -264,8 +330,9 @@
             <div class="project-tag-badge">Mobile App</div>
           </div>
           <div class="project-card-body">
-            <h3 class="project-title">SocialHub</h3>
+            <h3 class="project-title" id="socialhubTitle">SocialHub</h3>
             <p class="project-desc">A social media app featuring real-time notifications, an Instagram-style feed UI, and fluid animated transitions built with Flutter &amp; Firebase.</p>
+            <!-- Add a project-role paragraph once Denmar's exact contribution is confirmed. -->
             <div class="project-tech-row">
               <span class="tech-chip">Flutter</span>
               <span class="tech-chip">Dart</span>
@@ -273,14 +340,13 @@
               <span class="tech-chip">Figma</span>
             </div>
             <div class="project-links">
-              <a href="https://denskie-socialhub.web.app/" target="_blank" rel="noopener noreferrer" class="proj-link">View Live Project →</a>
-              <a href="#" class="proj-link proj-link-ghost">GitHub</a>
+              <a href="https://denskie-socialhub.web.app/" target="_blank" rel="noopener noreferrer" class="proj-link">Live Demo <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
             </div>
           </div>
         </article>
 
         <!-- Card 2: Calculator -->
-        <article class="project-card glass-card" data-category="web">
+        <article class="project-card glass-card" id="modern-calculator" data-category="web" aria-labelledby="calculatorTitle" tabindex="-1">
           <div class="project-card-top">
             <div class="project-preview-wrap">
               <img src="calculator-preview.svg" alt="Modern Python &amp; Web Calculator UI Preview" class="project-preview-img" loading="lazy">
@@ -288,15 +354,19 @@
             <div class="project-tag-badge web-badge">Web App</div>
           </div>
           <div class="project-card-body">
-            <h3 class="project-title">Modern Calculator</h3>
-            <p class="project-desc">A dark-themed calculator built with Python and Tkinter, featuring a minimalist desktop UI, basic arithmetic, percent, ± toggle, and error handling.</p>
+            <h3 class="project-title" id="calculatorTitle">Modern Calculator</h3>
+            <p class="project-desc">A calculator for everyday arithmetic, with a Python/Tkinter desktop version and an interactive JavaScript demo you can try here.</p>
+            <!-- Add a project-role paragraph once Denmar's exact contribution is confirmed. -->
             <div class="project-tech-row">
               <span class="tech-chip">HTML</span>
               <span class="tech-chip">CSS</span>
               <span class="tech-chip">Python</span>
+              <span class="tech-chip">Tkinter</span>
+              <span class="tech-chip">JavaScript</span>
             </div>
             <div class="project-links">
-              <button class="proj-link open-calculator" type="button">Open →</button>
+              <button class="proj-link open-calculator" type="button">Try Demo →</button>
+              <a href="cal.py" class="proj-link">View Code</a>
               <a href="cal.py" download class="proj-link proj-link-ghost">Download Python</a>
             </div>
           </div>
@@ -317,16 +387,13 @@
 
         <div class="contact-info">
           <p class="contact-intro">
-            Have a project in mind? I'd love to hear about it. Send me a message and I'll get back to you as soon as possible.
+            Have a frontend, backend, or UI/UX project in mind? Looking for help with IT support or operations?
+            Send me a message and let's talk about how my skills can support your team.
           </p>
           <div class="contact-links">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">
+            <a href="https://github.com/dentzy123" target="_blank" rel="noopener noreferrer" class="contact-social-link">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
               GitHub
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
             </a>
             <a href="mailto:dcurtivo15@gmail.com" class="contact-social-link">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -353,23 +420,25 @@
             <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
-            <span class="btn-text">Send Message</span>
+            <span class="btn-text">Compose email</span>
             <span class="btn-icon">→</span>
           </button>
+          <p class="form-note">Opens your email app with your message ready to send.</p>
           <div class="form-feedback" id="formFeedback" aria-live="polite"></div>
         </form>
 
       </div>
     </div>
   </section>
+  </main>
 
   <!-- ═══════════════════════════════════════════
        FOOTER
   ═══════════════════════════════════════════ -->
   <footer class="footer">
     <div class="container footer-inner">
-      <p class="footer-logo">dev<span class="accent">.</span>folio</p>
-      <p class="footer-copy">Designed &amp; built with HTML, CSS &amp; vanilla JS · 2026</p>
+      <a href="#hero" class="footer-logo">denmar<span class="accent">.</span></a>
+      <p class="footer-copy">Frontend &amp; Backend Development · UI/UX Design · 2026</p>
     </div>
   </footer>
 

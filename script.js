@@ -19,11 +19,12 @@ function applyTheme(theme) {
       themeToggle.setAttribute('title', 'Switch to light theme');
     }
   }
-  localStorage.setItem('theme', theme);
+  try { localStorage.setItem('theme', theme); } catch {}
 }
 
 // Initialize theme from storage
-const currentStoredTheme = localStorage.getItem('theme') || 'dark';
+let currentStoredTheme = 'dark';
+try { currentStoredTheme = localStorage.getItem('theme') || 'dark'; } catch {}
 applyTheme(currentStoredTheme);
 
 if (themeToggle) {
@@ -75,113 +76,143 @@ navLinkList.querySelectorAll('.nav-link').forEach(link => {
   });
 });
 
-/* ── Typing effect ── */
-const typedEl    = document.getElementById('typedText');
-const phrases    = [
-  'Frontend Developer.',
-  'UI/UX Designer.',
-  'Mobile App Builder.',
-  'Problem Solver.',
-];
-let phraseIndex  = 0;
-let charIndex    = 0;
-let isDeleting   = false;
-const TYPE_SPEED = 70;
-const DEL_SPEED  = 40;
-const PAUSE      = 1800;
-
-function type() {
-  const current = phrases[phraseIndex];
-
-  if (!isDeleting) {
-    typedEl.textContent = current.slice(0, charIndex + 1);
-    charIndex++;
-    if (charIndex === current.length) {
-      isDeleting = true;
-      setTimeout(type, PAUSE);
-      return;
-    }
-  } else {
-    typedEl.textContent = current.slice(0, charIndex - 1);
-    charIndex--;
-    if (charIndex === 0) {
-      isDeleting   = false;
-      phraseIndex  = (phraseIndex + 1) % phrases.length;
-    }
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && navLinkList.classList.contains('open')) {
+    navLinkList.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.focus();
   }
-
-  setTimeout(type, isDeleting ? DEL_SPEED : TYPE_SPEED);
-}
-
-type();
+});
 
 /* ── Project filter ── */
 const filterBtns  = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
+const projectCards = document.querySelectorAll('#projectsGrid .project-card');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
-
-    projectCards.forEach(card => {
-      const match = filter === 'all' || card.dataset.category === filter;
-      if (match) {
-        card.classList.remove('hidden');
-        // Tiny stagger re-entry animation
-        card.style.animation = 'none';
-        card.offsetHeight;                           // force reflow
-        card.style.animation = 'revealCard 0.45s var(--ease) forwards';
-      } else {
-        card.classList.add('hidden');
-      }
-    });
+function filterProjects(filter) {
+  filterBtns.forEach(btn => {
+    const active = btn.dataset.filter === filter;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', String(active));
   });
+  projectCards.forEach(card => {
+    card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter);
+  });
+}
+
+filterProjects('all');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => filterProjects(btn.dataset.filter));
 });
 
-/* ── Skill bars animate on scroll ── */
-const skillFills = document.querySelectorAll('.skill-fill');
+document.querySelector('.explore-work')?.addEventListener('click', () => {
+  filterProjects('all');
+});
 
-const skillObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('animated');
-      skillObserver.unobserve(entry.target);
+/* The HTML Projects grid is the single source of project content and links.
+   Keeping it in HTML also makes the full portfolio usable without JavaScript. */
+const projects = Array.from(projectCards, (card, index) => {
+  if (!card.id) {
+    let id = `project-${index + 1}`;
+    while (document.getElementById(id)) id += '-card';
+    card.id = id;
+  }
+  card.tabIndex = -1;
+  const heading = card.querySelector('.project-title').cloneNode(true);
+  heading.querySelectorAll('[aria-hidden="true"]').forEach(node => node.remove());
+  const image = card.querySelector('.project-preview-img');
+  return {
+    card,
+    title: heading.textContent.trim(),
+    description: card.querySelector('.project-desc')?.textContent.trim() || '',
+    image: image?.getAttribute('src'),
+    href: `#${card.id}`
+  };
+});
+
+/* ── Manual hero project showcase ── */
+(function () {
+  const container = document.getElementById('showcaseSlides');
+  if (!container || !projects.length) return;
+  const counter = document.getElementById('showcaseCounter');
+  const status = document.getElementById('showcaseStatus');
+  const previous = document.getElementById('previousProject');
+  const next = document.getElementById('nextProject');
+  let current = 0;
+  let transition;
+
+  const slides = projects.map((project, index) => {
+    const slide = document.createElement('div');
+    slide.className = 'showcase-slide';
+    slide.setAttribute('role', 'group');
+    slide.setAttribute('aria-roledescription', 'slide');
+    slide.setAttribute('aria-label', `${index + 1} of ${projects.length}`);
+
+    if (project.image) {
+      const image = document.createElement('img');
+      image.className = 'showcase-thumbnail';
+      image.src = project.image;
+      image.alt = ''; // The adjacent title identifies this decorative thumbnail.
+      image.width = 80;
+      image.height = 56;
+      image.decoding = 'async';
+      image.addEventListener('error', () => image.remove(), { once: true });
+      slide.append(image);
     }
+
+    const heading = document.createElement('h2');
+    heading.className = 'showcase-title';
+    const link = document.createElement('a');
+    link.href = project.href;
+    link.textContent = project.title;
+    link.addEventListener('click', () => {
+      if (project.card.classList.contains('hidden')) filterProjects('all');
+      project.card.focus({ preventScroll: true });
+    });
+    heading.append(link);
+    const description = document.createElement('p');
+    description.className = 'showcase-description';
+    description.textContent = project.description;
+    slide.append(heading, description);
+    return slide;
   });
-}, { threshold: 0.3 });
+  container.replaceChildren(...slides);
 
-skillFills.forEach(fill => skillObserver.observe(fill));
-
-/* ── Generic scroll-reveal ── */
-const revealEls = document.querySelectorAll(
-  '.section-heading, .section-label, .about-grid, .skill-category, ' +
-  '.project-card, .contact-grid, .stats-row, .filter-bar'
-);
-
-revealEls.forEach(el => el.classList.add('reveal'));
-
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      // Stagger siblings by DOM order within parent
-      const siblings = Array.from(entry.target.parentElement.children)
-        .filter(c => c.classList.contains('reveal'));
-      const idx = siblings.indexOf(entry.target);
-      entry.target.style.transitionDelay = `${idx * 80}ms`;
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
+  function showProject(index, direction = 0) {
+    transition?.cancel();
+    current = (index + projects.length) % projects.length;
+    slides.forEach((slide, i) => {
+      const active = i === current;
+      slide.classList.toggle('is-active', active);
+      slide.inert = !active;
+      slide.setAttribute('aria-hidden', String(!active));
+    });
+    counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(projects.length).padStart(2, '0')}`;
+    if (direction) status.textContent = `${projects[current].title}, project ${current + 1} of ${projects.length}`;
+    if (direction && !reducedMotion.matches) {
+      transition = slides[current].animate([
+        { opacity: 0, transform: `translateX(${-direction * 8}px)` },
+        { opacity: 1, transform: 'translateX(0)' }
+      ], { duration: 220, easing: 'ease-out' });
     }
-  });
-}, { threshold: 0.1 });
+  }
 
-revealEls.forEach(el => revealObserver.observe(el));
+  previous.addEventListener('click', () => showProject(current - 1, -1));
+  next.addEventListener('click', () => showProject(current + 1, 1));
+  // Native buttons support Tab, Enter and Space. Focus stays on the used control.
+  previous.disabled = next.disabled = projects.length < 2;
+  container.closest('.project-showcase').querySelector('.showcase-controls').hidden = false;
+  reducedMotion.addEventListener('change', () => {
+    if (reducedMotion.matches) transition?.cancel();
+  });
+  showProject(0);
+})();
+
+// Portrait outline and CTA motion are CSS-only, with reduced-motion fallbacks.
 
 /* ── Contact form ── */
 const form         = document.getElementById('contactForm');
-const submitBtn    = document.getElementById('submitBtn');
 const formFeedback = document.getElementById('formFeedback');
 
 form.addEventListener('submit', e => {
@@ -211,16 +242,13 @@ form.addEventListener('submit', e => {
     return;
   }
 
-  // Simulate send
-  submitBtn.disabled  = true;
-  submitBtn.innerHTML = '<span class="btn-text">Sending…</span>';
-
-  setTimeout(() => {
-    form.reset();
-    submitBtn.disabled  = false;
-    submitBtn.innerHTML = '<span class="btn-text">Send Message</span><span class="btn-icon">→</span>';
-    showFeedback('Message sent! I\'ll get back to you soon.', 'success');
-  }, 1400);
+  const name = document.getElementById('name').value.trim();
+  const email = emailField.value.trim();
+  const message = document.getElementById('message').value.trim();
+  const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+  const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`);
+  window.location.href = `mailto:dcurtivo15@gmail.com?subject=${subject}&body=${body}`;
+  showFeedback('Your email draft is ready. Send it in your email app, or email dcurtivo15@gmail.com directly.', 'success');
 });
 
 // Remove error state on input
@@ -241,16 +269,6 @@ function showFeedback(msg, cls) {
   }, 5000);
 }
 
-/* ── Card keyframe injection ── */
-const styleSheet = document.createElement('style');
-styleSheet.textContent = `
-  @keyframes revealCard {
-    from { opacity: 0; transform: translateY(20px) scale(0.97); }
-    to   { opacity: 1; transform: translateY(0)    scale(1); }
-  }
-`;
-document.head.appendChild(styleSheet);
-
 /* Calculator modal + logic */
 (function () {
   const openCalcBtns = document.querySelectorAll('.open-calculator');
@@ -261,19 +279,29 @@ document.head.appendChild(styleSheet);
   if (!calcModal) return;
 
   let calcEquation = '';
+  let previousFocus;
 
   function openCalc() {
+    previousFocus = document.activeElement;
     calcModal.classList.add('open');
     calcModal.setAttribute('aria-hidden', 'false');
     calcEquation = '';
     updateCalcDisplay();
     document.body.style.overflow = 'hidden';
+    calcClose.focus();
+    document.querySelector('main').inert = true;
+    document.querySelector('nav').inert = true;
+    document.querySelector('footer').inert = true;
   }
 
   function closeCalc() {
     calcModal.classList.remove('open');
     calcModal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    document.querySelector('main').inert = false;
+    document.querySelector('nav').inert = false;
+    document.querySelector('footer').inert = false;
+    previousFocus?.focus();
   }
 
   openCalcBtns.forEach(b => b.addEventListener('click', openCalc));
@@ -281,6 +309,18 @@ document.head.appendChild(styleSheet);
   calcOverlay.addEventListener('click', closeCalc);
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && calcModal.classList.contains('open')) closeCalc();
+    if (e.key === 'Tab' && calcModal.classList.contains('open')) {
+      const buttons = [...calcModal.querySelectorAll('button')];
+      const first = buttons[0];
+      const last = buttons[buttons.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 
   function updateCalcDisplay() {
